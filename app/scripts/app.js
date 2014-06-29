@@ -47,10 +47,15 @@ function update() {
         .append('circle')
         .attr({
             fill: '#f00',
-            cx: x,
-            cy: y,
-            r: function (d) { return dotSize; }
-        });
+            cx: 0,
+            cy: 0,
+            r: function(d) { return dotSize; }
+        })
+        .transition()
+        .duration(2000)
+        .delay(function(d, i) { return i * 200; })
+        .attr('cy', y)
+        .attr('cx', x);
 
     var line = d3.svg.line()
         .interpolate('basis')
